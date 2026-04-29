@@ -1,0 +1,25 @@
+fetch('https://api.apifox.com/api/v1/schemas-tree-list', {
+    headers: {
+        'x-branch-id': '7780236',
+        'x-client-mode': 'web',
+        'x-client-version': '2.8.27-alpha.1',
+        'x-device-id': 'G6T3jQSO-ULyI-YBzn-ucwB-cQ0sKaDBotMv',
+        'x-project-id': '8025577',
+    },
+    credentials: "include",
+}).then(res => res.json()).then(res => {
+    for(let idx in res.data) {
+        let id = res.data[idx].schema.id;
+        fetch('https://api.apifox.com/api/v1/api-schemas/' + id, {
+            method: 'DELETE',
+            headers: {
+                'x-branch-id': '7780236',
+                'x-client-mode': 'web',
+                'x-client-version': '2.8.27-alpha.1',
+                'x-device-id': 'G6T3jQSO-ULyI-YBzn-ucwB-cQ0sKaDBotMv',
+                'x-project-id': '8025577',
+            },
+            credentials: "include",
+        }).then(res => res.json()).then(res => console.log(res))
+    }
+})
